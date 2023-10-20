@@ -73,7 +73,7 @@ namespace BakeryV2.Controllers
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorsId == id);
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       _db.Flavors.Remove(thisFlavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
