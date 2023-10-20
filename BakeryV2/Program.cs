@@ -14,7 +14,7 @@ namespace ToDoList
 
       builder.Services.AddControllersWithViews();
 
-      builder.Services.AddDbContext<BakeryV2Conxtext>(
+      builder.Services.AddDbContext<BakeryV2Context>(
                   dbContextOptions => dbContextOptions
                     .UseMySql(
                       builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
@@ -23,7 +23,7 @@ namespace ToDoList
                 );
 
       builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                  .AddEntityFrameworkStores<BakeryV2Conxtext>()
+                  .AddEntityFrameworkStores<BakeryV2Context>()
                   .AddDefaultTokenProviders();
 
       builder.Services.Configure<IdentityOptions>(options =>
