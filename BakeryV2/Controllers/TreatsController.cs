@@ -5,6 +5,7 @@ using BakeryV2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BakeryV2.Controllers
 {
@@ -20,7 +21,12 @@ namespace BakeryV2.Controllers
       _db = db;
     }
 
-
+    [AllowAnonymous]
+    public async Task<ActionResult> Index()
+    {
+      List<Treat> allTreats = _db.Treats.ToList();
+      return View(allTreats);
+    }
 
   }
 }
