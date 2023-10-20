@@ -7,8 +7,8 @@ namespace BakeryV2.Controllers
 {
   public class HomeController : Controller
   {
-    private readonly ToDoListContext _db;
-    public HomeController(ToDoListContext db)
+    private readonly BakeryV2Context _db;
+    public HomeController(BakeryV2Context db)
     {
       _db = db;
     }
