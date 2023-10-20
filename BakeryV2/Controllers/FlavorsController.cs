@@ -48,5 +48,21 @@ namespace BakeryV2.Controllers
       }
     }
 
+    public ActionResult Details(int id)
+    {
+#nullable enable
+      Flavor? thisFlavor = _db.Flavors
+        .Include(flavor => flavor.JoinEntities)
+        .ThenInclude(join => join.Treat)
+        .FirstOrDefault(flavor => flavor.flavorId == id);
+#nullable disable
+
+      if (thisFlavor == null)
+      {
+        return RedirectToAction("Index", "Flavors"); //If there is no flavor with provided id, redirect to Index for Flavors instead of 404.
+      }
+      return View(thisFlavor);
+    }
+
   }
 }
