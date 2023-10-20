@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering; // Select List
 
 namespace BakeryV2.Controllers
 {
-  // [Authorize]
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly BakeryV2Context _db;
@@ -22,7 +22,7 @@ namespace BakeryV2.Controllers
       _db = db;
     }
 
-    // [AllowAnonymous]
+    [AllowAnonymous]
     public ActionResult Index()
     {
       List<Treat> allTreats = _db.Treats.ToList();
@@ -49,6 +49,7 @@ namespace BakeryV2.Controllers
       }
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
 #nullable enable
