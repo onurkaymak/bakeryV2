@@ -20,5 +20,10 @@ namespace BakeryV2.Controllers
       _db = db;
     }
 
+    public ActionResult Index()
+    {
+      return View();
+    }
+
   }
 }
