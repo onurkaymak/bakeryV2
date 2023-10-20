@@ -54,7 +54,7 @@ namespace BakeryV2.Controllers
       Flavor? thisFlavor = _db.Flavors
         .Include(flavor => flavor.JoinEntities)
         .ThenInclude(join => join.Treat)
-        .FirstOrDefault(flavor => flavor.flavorId == id);
+        .FirstOrDefault(flavor => flavor.FlavorId == id);
 #nullable disable
 
       if (thisFlavor == null)
