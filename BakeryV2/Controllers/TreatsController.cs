@@ -47,5 +47,22 @@ namespace BakeryV2.Controllers
         return RedirectToAction("Index");
       }
     }
+
+    public ActionResult Details(int id)
+    {
+#nullable enable
+      Treat? thisTreat = _db.Treats
+        .Include(treat => treat.JoinEntities)
+        .ThenInclude(join => join.Flavor)
+        .FirstOrDefault(treat => treat.TreatId == id);
+#nullable disable
+
+      if (thisTreat == null)
+      {
+        return RedirectToAction("Index", "Home");
+      }
+
+      return View(thisTreat);
+    }
   }
 }
