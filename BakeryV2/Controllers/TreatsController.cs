@@ -33,6 +33,19 @@ namespace BakeryV2.Controllers
       return View();
     }
 
-
+    [HttpPost]
+    public <ActionResult> Create(Treat treat)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View(treat);
+      }
+      else
+      {
+        _db.Treats.Add(treat);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+    }
   }
 }
