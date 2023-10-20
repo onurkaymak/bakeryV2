@@ -28,3 +28,8 @@ else
     }
   </ul>
 }
+
+<p>@Html.ActionLink("Back to Treat List", "Index")</p>
+<p>@Html.ActionLink("Edit This Treat", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Add a New Flavor", "AddFlavor", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
