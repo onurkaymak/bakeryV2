@@ -117,5 +117,14 @@ namespace BakeryV2.Controllers
       return RedirectToAction("Details", new { id = treat.TreatId });
     }
 
+    [HttpPost]
+    public ActionResult DeleteJoin(int joinId)
+    {
+      TreatFlavor joinEntry = _db.TreatFlavors.FirstOrDefault(entry => entry.TreatFlavorId == joinId);
+      _db.TreatFlavors.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }
