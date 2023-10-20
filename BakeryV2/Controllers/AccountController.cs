@@ -57,5 +57,34 @@ namespace BakeryV2.Controllers
       }
     }
 
+    public ActionResult Login()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Login(LoginViewModel model)
+    {
+      if (!ModelState.IsValid)
+      {
+        return View(model);
+      }
+      else
+      {
+        Microsoft.AspNetCore.Identity.SignInResult result =
+        await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+
+        if (result.Succeeded)
+        {
+          return RedirectToAction("Index");
+        }
+        else
+        {
+          ModelState.AddModelError("", "There is something wrong with your email or username. Please try again.");
+          return View(model);
+        }
+      }
+    }
+
   }
 }
