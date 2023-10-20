@@ -59,10 +59,25 @@ namespace BakeryV2.Controllers
 
       if (thisTreat == null)
       {
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Treats"); //If there is no treat with provided id, redirect to Index for Treats instead of 404.
       }
 
       return View(thisTreat);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+
+      return View(thisTreat);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Treat treat)
+    {
+      _db.Treats.Update(treat);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
