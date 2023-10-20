@@ -21,6 +21,13 @@ namespace BakeryV2.Controllers
       _db = db;
     }
 
+    // [AllowAnonymous]
+    public ActionResult Index()
+    {
+      List<Flavor> allFlavors = _db.Flavors.ToList();
+      return View(allFlavors);
+    }
+
     public ActionResult Create()
     {
       return View();
