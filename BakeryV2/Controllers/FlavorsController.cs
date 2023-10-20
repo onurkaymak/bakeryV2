@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using BakeryV2.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization; // Authorization
+using Microsoft.AspNetCore.Identity; // Identity -Aauthentication Authorization 
+using System.Security.Claims; // Auth
+using System.Collections.Generic; // <List>
+using Microsoft.AspNetCore.Mvc.Rendering; // Select List
 
 namespace BakeryV2.Controllers
 {
@@ -90,11 +91,11 @@ namespace BakeryV2.Controllers
     public ActionResult AddTreat(Flavor flavor, int treatId)
     {
 #nullable enable
-      TreatFlavor? joinEntity = _db.TreatFlavors.FirstOrDefault(join => (join.TreadId == treatId && join.FlavorId == flavor.FlavorId));
+      TreatFlavor? joinEntity = _db.TreatFlavors.FirstOrDefault(join => (join.TreatId == treatId && join.FlavorId == flavor.FlavorId));
 #nullable disable
       if (joinEntity == null && treatId != 0)
       {
-        _db.TreatFlavors.Add(new TreatFlavor() { TreadId = treatId, FlavorId = flavor.FlavorId });
+        _db.TreatFlavors.Add(new TreatFlavor() { TreatId = treatId, FlavorId = flavor.FlavorId });
         _db.SaveChanges();
       }
       return RedirectToAction("Details", new { id = flavor.FlavorId });
